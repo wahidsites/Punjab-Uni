@@ -78,6 +78,161 @@ footer{background:#08264f;color:#dbe5f3;border-top:5px solid var(--gold);padding
 <div><label for="name">Full Name *</label><input id="name" name="Full Name" required autocomplete="name"></div><div><label for="email">Email Address *</label><input id="email" type="email" name="Email Address" required autocomplete="email"></div><div><label for="phone">Phone Number</label><input id="phone" name="Phone Number" type="tel" autocomplete="tel"></div><div><label for="level">Study Level *</label><select id="level" name="Study Level" required><option value="">Select level</option><option>Undergraduate</option><option>Graduate</option><option>Postgraduate</option><option>Diploma / Certificate</option></select></div>
 <div class="full"><label for="programme">Programme of Interest *</label><input id="programme" name="Programme of Interest" required placeholder="e.g. BS Computer Science, BBA, LLB"></div><div class="full"><label for="qualification">Previous Qualification</label><input id="qualification" name="Previous Qualification" placeholder="e.g. FSc Pre-Engineering, A Levels, BS"></div><div class="full"><label for="message">Enquiry / Message *</label><textarea id="message" name="Message" required placeholder="What admission information do you need?"></textarea></div><div class="full"><button id="send" type="submit">Send Enquiry</button></div><div class="full" id="status" role="status" aria-live="polite"></div></form></div></div></section>
 </main>
+  <!-- ===== ADMISSION FORM: paste this whole block just above your <footer> ===== -->
+<style>
+  #admission-form{background:#f3f6fb;padding:56px 16px}
+  #admission-form .adm-wrap{max-width:860px;margin:0 auto;background:#fff;border:1px solid #d5deec;border-top:5px solid #073b78;border-radius:6px;padding:32px 28px}
+  #admission-form h2{margin:0 0 6px;color:#073b78;font-size:1.7rem}
+  #admission-form .adm-note{margin:0 0 24px;color:#4a5568;font-size:.95rem;line-height:1.55}
+  #admission-form fieldset{border:0;margin:0 0 22px;padding:0}
+  #admission-form legend{font-weight:700;color:#073b78;padding:0 0 8px;margin-bottom:12px;border-bottom:1px solid #d5deec;width:100%}
+  #admission-form .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+  #admission-form .adm-full{grid-column:1/-1}
+  #admission-form label{display:block;font-size:.9rem;font-weight:600;color:#1f2937;margin-bottom:5px}
+  #admission-form input,#admission-form select,#admission-form textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #b7c3d8;border-radius:4px;font:inherit;background:#fff}
+  #admission-form input:focus,#admission-form select:focus,#admission-form textarea:focus{outline:2px solid #073b78;outline-offset:1px;border-color:#073b78}
+  #admission-form textarea{min-height:110px;resize:vertical}
+  #admission-form .adm-check{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+  #admission-form .adm-check input{width:auto;margin-top:4px}
+  #admission-form button{background:#073b78;color:#fff;border:0;border-radius:4px;padding:13px 28px;font:inherit;font-weight:700;cursor:pointer}
+  #admission-form button:hover{background:#052c58}
+  #admission-form button:disabled{opacity:.6;cursor:wait}
+  #admission-form .adm-msg{margin-top:16px;padding:12px 14px;border-radius:4px;display:none;font-size:.95rem}
+  #admission-form .adm-msg.ok{display:block;background:#e6f4ea;color:#14532d;border:1px solid #9ad3ab}
+  #admission-form .adm-msg.err{display:block;background:#fdecea;color:#7f1d1d;border:1px solid #f1a9a3}
+  .adm-hp{position:absolute;left:-9999px}
+  @media(max-width:640px){#admission-form .adm-grid{grid-template-columns:1fr}#admission-form .adm-wrap{padding:24px 18px}}
+</style>
+
+<section id="admission-form">
+  <div class="adm-wrap">
+    <h2>Admission Application Form</h2>
+    <p class="adm-note">Fill in your details and apply to the programme you want. Your application is emailed straight to the admissions desk. Fields marked * are required.</p>
+
+    <form id="admForm" novalidate>
+      <!-- FormSubmit settings -->
+      <input type="hidden" name="_subject" value="New admission application - University of the Punjab project">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" class="adm-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <fieldset>
+        <legend>Personal details</legend>
+        <div class="adm-grid">
+          <div><label for="adm-name">Full name *</label><input id="adm-name" name="Full Name" required autocomplete="name"></div>
+          <div><label for="adm-father">Father's name *</label><input id="adm-father" name="Father's Name" required></div>
+          <div><label for="adm-email">Email address *</label><input id="adm-email" name="email" type="email" required autocomplete="email"></div>
+          <div><label for="adm-phone">Phone number *</label><input id="adm-phone" name="Phone" type="tel" required autocomplete="tel" placeholder="03XX XXXXXXX"></div>
+          <div>
+            <label for="adm-gender">Gender *</label>
+            <select id="adm-gender" name="Gender" required>
+              <option value="">Select</option><option>Male</option><option>Female</option><option>Other</option>
+            </select>
+          </div>
+          <div><label for="adm-city">City *</label><input id="adm-city" name="City" required autocomplete="address-level2"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Programme</legend>
+        <div class="adm-grid">
+          <div>
+            <label for="adm-level">Study level *</label>
+            <select id="adm-level" name="Study Level" required>
+              <option value="">Select level</option>
+              <option>Undergraduate (BS)</option><option>Graduate (MA / MSc)</option>
+              <option>Postgraduate (MPhil / PhD)</option><option>Diploma / Certificate</option>
+            </select>
+          </div>
+          <div>
+            <label for="adm-shift">Shift *</label>
+            <select id="adm-shift" name="Shift" required>
+              <option value="">Select</option><option>Morning</option><option>Evening</option>
+            </select>
+          </div>
+          <div class="adm-full">
+            <label for="adm-program">Programme applying for *</label>
+            <input id="adm-program" name="Programme" list="adm-programs" required placeholder="e.g. BS Computer Science">
+            <datalist id="adm-programs">
+              <option value="BS Computer Science"><option value="BS Information Technology"><option value="BS Software Engineering">
+              <option value="BS Psychology"><option value="BS Economics"><option value="BS Mathematics">
+              <option value="BS Physics"><option value="BS Chemistry"><option value="BS English">
+              <option value="BS Political Science"><option value="BS Mass Communication"><option value="BBA">
+              <option value="MBA"><option value="LLB"><option value="MPhil"><option value="PhD">
+            </datalist>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Academic background</legend>
+        <div class="adm-grid">
+          <div>
+            <label for="adm-qual">Last qualification *</label>
+            <select id="adm-qual" name="Last Qualification" required>
+              <option value="">Select</option><option>Matric</option><option>Intermediate (FSc / FA / ICS)</option>
+              <option>A-Levels</option><option>Bachelor's</option><option>Master's</option>
+            </select>
+          </div>
+          <div><label for="adm-inst">School / college / university *</label><input id="adm-inst" name="Institute" required></div>
+          <div><label for="adm-year">Year of passing *</label><input id="adm-year" name="Passing Year" type="number" min="1990" max="2030" required></div>
+          <div><label for="adm-marks">Marks / percentage *</label><input id="adm-marks" name="Marks" required placeholder="e.g. 842 / 1100 or 76%"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Statement</legend>
+        <label for="adm-msg">Why do you want to join this programme? *</label>
+        <textarea id="adm-msg" name="Statement" required></textarea>
+      </fieldset>
+
+      <label class="adm-check">
+        <input type="checkbox" id="adm-agree" required>
+        <span>I confirm that the information above is correct.</span>
+      </label>
+      <p style="margin:18px 0 0"><button type="submit" id="adm-btn">Submit application</button></p>
+      <div id="adm-status" class="adm-msg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<script>
+(function () {
+  var form = document.getElementById('admForm');
+  var btn = document.getElementById('adm-btn');
+  var box = document.getElementById('adm-status');
+  var ENDPOINT = 'https://formsubmit.co/ajax/abdulwahiddd801@gmail.com';
+
+  function show(type, text) { box.className = 'adm-msg ' + type; box.textContent = text; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; btn.textContent = 'Sending...'; box.className = 'adm-msg';
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      if (d.success === 'true' || d.success === true) {
+        show('ok', 'Application submitted. We will contact you by email or phone.');
+        form.reset();
+      } else {
+        throw new Error(d.message || 'Failed');
+      }
+    })
+    .catch(function () {
+      show('err', 'Could not send the application. Check your connection and try again.');
+    })
+    .finally(function () { btn.disabled = false; btn.textContent = 'Submit application'; });
+  });
+})();
+</script>
+<!-- ===== END ADMISSION FORM ===== -->
+
 <footer><div class="wrap"><div class="footer-grid"><div><h3>University of the Punjab</h3><p>Quaid-i-Azam Campus, Lahore, Punjab, Pakistan</p><p>Established 1882</p><p><a href="https://pu.edu.pk/">Official University Website ↗</a></p></div><div><h3>About University</h3><div class="foot-links"><a href="https://pu.edu.pk/home/about">Introduction</a><a href="https://pu.edu.pk/page/Our-History-Our-Pride.html">History</a><a href="https://pu.edu.pk/home/campuses">Campuses</a><a href="https://pu.edu.pk/home/administration">Administration</a></div></div><div><h3>Academics</h3><div class="foot-links"><a href="https://pu.edu.pk/home/faculty">Faculties</a><a href="https://pu.edu.pk/home/department">Departments</a><a href="https://pu.edu.pk/home/program">Programs</a><a href="https://pu.edu.pk/home/scholarships">Scholarships</a></div></div><div><h3>Admissions &amp; Exams</h3><div class="foot-links"><a href="https://admissions.pu.edu.pk/">Apply Online</a><a href="https://pu.edu.pk/home/admission_notices">Admission Notices</a><a href="https://pu.edu.pk/home/date_sheet">Date Sheets</a><a href="https://pu.edu.pk/home/results">Results</a></div></div></div><div class="copyright">© University information reproduced for an independent student project. This website is not the official University of the Punjab website. Official notices and requirements should be verified at pu.edu.pk.</div></div></footer>
 <script>
 const slides=[...document.querySelectorAll('.hero-slide')],dots=[...document.querySelectorAll('.hero-dots button')];let current=0;
